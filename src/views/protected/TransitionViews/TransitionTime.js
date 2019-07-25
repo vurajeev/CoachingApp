@@ -62,9 +62,8 @@ class TransitionTime extends React.Component {
         if (this.state.transitionEnded) {
             this.setState({transitionEnded: false});
         }
-        this.setState({transitionType: type});
-        console.log(type);
-        console.log(this.state.transitionType);
+        this.setState({transitionType: type},
+            () => console.log(this.state.transitionType));
     };
 
     handleRecsModal = open => {
@@ -208,6 +207,7 @@ class TransitionTime extends React.Component {
                                             firebase={firebase}
                                             typeSelected={this.state.transitionType === null ? false : true}
                                             handleEndTransition={this.handleEndTransition}
+                                            transitionType={this.state.transitionType}
                                         />
                                     )}
                                 </FirebaseContext.Consumer>
