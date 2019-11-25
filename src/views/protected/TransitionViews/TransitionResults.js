@@ -782,9 +782,9 @@ class TransitionResults extends React.Component {
                         textColor="primary"
                         variant="fullWidth"
                       >
-                        <Tab label="Summary" onClick={this.handleSummary} />
-                        <Tab label="Details" onClick={this.handleDetails} />
-                        <Tab label="Trends" onClick={this.handleTrends} />
+                        <Tab label="Summary" onClick={this.handleSummary} style={{fontSize: 16}}/>
+                        <Tab label="Details" onClick={this.handleDetails} style={{fontSize: 16}}/>
+                        <Tab label="Trends" onClick={this.handleTrends} style={{fontSize: 16}}/>
                       </Tabs>
                     </TabBar>
                   </Grid>

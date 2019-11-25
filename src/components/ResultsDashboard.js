@@ -82,16 +82,18 @@ const styles = {
     marginTop: "2vh"
   },
   viewButtons: {
-    minWidth: 150,
+    minWidth: 210,
     textAlign: "center",
     color: "#094492",
     borderColor: "#094492",
+    fontSize: 16
   },
   viewButtonsSelected: {
-    minWidth: 150,
+    minWidth: 210,
     textAlign: "center",
     color: "#fff",
-    backgroundColor: "#094492"
+    backgroundColor: "#094492",
+    fontSize: 16
   },
 };
 
@@ -190,7 +192,7 @@ class ResultsDashboard extends React.Component {
                   className={this.props.view === this.props.viewEnum.QUESTIONS ? classes.viewButtonsSelected : classes.viewButtons}
                   onClick={this.props.questionsClick}
                 >
-                  Questions
+                  Coaching
                 </Button>
               </MuiThemeProvider>
             </Grid>
@@ -207,7 +209,7 @@ class ResultsDashboard extends React.Component {
                   className={this.props.view === this.props.viewEnum.COACH_PREP ? classes.viewButtonsSelected : classes.viewButtons}
                   onClick={this.props.coachPrepClick}
                 >
-                  Coach Prep
+                  Conference Prep
                 </Button>
               </MuiThemeProvider>
             </Grid>
