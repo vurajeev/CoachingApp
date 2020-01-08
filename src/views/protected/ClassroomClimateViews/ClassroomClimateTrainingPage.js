@@ -9,10 +9,9 @@ import { withStyles } from "@material-ui/core/styles/index";
 import FirebaseContext from "../../../components/Firebase/FirebaseContext";
 import AppBar from "../../../components/AppBar";
 import Typography from "@material-ui/core/Typography/Typography";
-import { ImmortalDB } from "immortal-db";
+// import { ImmortalDB } from "immortal-db";
 import "chartjs-plugin-datalabels";
-import TrainingVideo from "../../../components/Shared/TrainingVideo";
-import ChildTeacherBehaviorTrendsSlider from "../../../components/AssociativeCooperativeComponents/ResultsComponents/ChildTeacherBehaviorTrendsSlider";
+import TrainingVideo from "../../../components/Shared/TrainingVideo.tsx";
 import TrainingQuestionnaire from "../../../components/Shared/TrainingQuestionnaire";
 
 const styles = {
@@ -77,10 +76,16 @@ const ViewEnum = {
   KNOWLEDGECHECK: 5
 };
 
+/**
+ * classroom climate training
+ * @class ClassroomClimateTrainingPage
+ */
 class ClassroomClimateTrainingPage extends React.Component {
+  /**
+   * @param {Props} props 
+   */
   constructor(props) {
     super(props);
-    this.handleAppend = this.handleAppend.bind(this);
   }
 
   state = {
@@ -92,47 +97,6 @@ class ClassroomClimateTrainingPage extends React.Component {
     entries: [],
     dbCounter: 0, // @Hack @Temporary !!!
     view: ViewEnum.CONCEPTS
-  };
-
-  handleAppend(entry) {
-    const newEntries = this.state.entries;
-    entry.type = this.state.type;
-    newEntries.push(entry);
-    this.setState({ entries: newEntries });
-
-    this.handleSpreadsheetAppend(entry);
-
-    this.handleDBinsert(entry);
-  }
-
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
-
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  handleHelpModal = () => {
-    this.setState({ help: true });
-  };
-
-  handleClickAway = () => {
-    this.setState({ help: false });
-  };
-
-  handleDBinsert = async entry => {
-    // Once we integrate users, the user + some index will be the key for the DB.
-    await ImmortalDB.set(
-      JSON.stringify(this.state.dbCounter),
-      JSON.stringify(entry)
-    );
-
-    this.setState({ dbCounter: this.state.dbCounter + 1 });
   };
 
   conceptsClick = () => {
@@ -165,6 +129,10 @@ class ClassroomClimateTrainingPage extends React.Component {
     }
   };
 
+  /**
+   * render function
+   * @return {ReactElement}
+   */
   render() {
     const { classes } = this.props;
 
@@ -294,16 +262,26 @@ class ClassroomClimateTrainingPage extends React.Component {
                       </div>
                     ) : this.state.view === ViewEnum.EXAMPLE ? (
                       <div className={classes.resultsContent}>
-                        <TrainingVideo />
+                        <Typography variant="h4">
+                          COMING SOON...
+                        </Typography>
                       </div>
                     ) : this.state.view === ViewEnum.DEMONSTRATION ? (
                       <div className={classes.resultsContent}>
-                        <ChildTeacherBehaviorTrendsSlider />
+                        <Typography variant="h4">
+                          COMING SOON...
+                        </Typography>
                       </div>
-                    ) : this.state.view === ViewEnum.TRYIT ? null : this.state
+                    ) : this.state.view === ViewEnum.TRYIT ? (
+                      <div className={classes.resultsContent}>
+                        <Typography variant="h4">
+                          COMING SOON...
+                        </Typography>
+                      </div>
+                    ) : this.state
                         .view === ViewEnum.KNOWLEDGECHECK ? (
                       <div className={classes.resultsContent}>
-                        <TrainingQuestionnaire section={2} />
+                        <TrainingQuestionnaire section={'climate'} />
                       </div>
                     ) : null}
                   </div>
