@@ -31,7 +31,10 @@ import Notes from "./Notes";
 import FirebaseContext from "./Firebase/FirebaseContext";
 import { ClickAwayListener } from "@material-ui/core/es";
 import TransitionTimeHelp from "../views/protected/TransitionViews/TransitionTimeHelp";
-import ClassroomClimateHelp from "./ClassroomClimateComponent/ClassroomClimateHelp";
+import ClassroomClimateHelp from "../views/protected/ClassroomClimateViews/ClassroomClimateHelp.tsx";
+import AssocCoopHelp from "../views/protected/AssociativeCooperativeViews/AssocCoopHelp";
+import SequentialActivitiesHelp from './SequentialActivitiesComponents/SequentialActivitiesHelp';
+import MathInstructionHelp from "../views/protected/MathInstructionViews/MathInstructionHelp.tsx";
 import YesNoDialog from "./Shared/YesNoDialog.tsx";
 import { resetTransitionTime } from "../state/actions/transition-time";
 import { emptyClimateStack } from "../state/actions/classroom-climate";
@@ -91,10 +94,12 @@ const styles = {
     borderWidth: "2px",
     fontSize: "15px",
     alignSelf: "flex-end",
-    marginTop: "auto"
+    marginTop: "auto",
+    fontFamily: "Arimo"
   },
   gridTopMargin: {
-    marginTop: "5px"
+    marginTop: "5px",
+    fontFamily: "Arimo"
   }
 };
 
@@ -146,7 +151,7 @@ class Dashboard extends React.Component {
           lookForsIcon: ClassroomClimateLookForsImage,
           notesIcon: ClassroomClimateNotesImage
         })
-      : this.props.magic8 === "Math"
+      : this.props.magic8 === "Math Instruction"
       ? this.setState({
           icon: MathIconImage,
           lookForsIcon: MathLookForsImage,
@@ -224,7 +229,13 @@ class Dashboard extends React.Component {
                   return <TransitionTimeHelp />;
                 case "Classroom Climate":
                   return <ClassroomClimateHelp />;
-                default:
+                case "Associative and Cooperative":
+                    return <AssocCoopHelp />;
+                case "Sequential Activities":
+                    return <SequentialActivitiesHelp />;
+               case "Math Instruction":
+                    return <MathInstructionHelp/>;
+                  default:
                   return <div />;
               }
             })()}

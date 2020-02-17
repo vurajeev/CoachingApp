@@ -5,7 +5,6 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import AppBar from "../../../components/AppBar";
 import FirebaseContext from "../../../components/Firebase/FirebaseContext";
 import { connect } from "react-redux";
-import ClassroomClimateHelp from "../../../components/ClassroomClimateComponent/ClassroomClimateHelp";
 import CenterMenuSequentialActivities from "../../../components/SequentialActivitiesComponents/CenterMenuSequentialActivities";
 import { deleteAllCenters } from "../../../state/actions/sequential-activities";
 
@@ -23,7 +22,8 @@ const styles: object = {
 };
 
 interface Props {
-  classes: Style
+  classes: Style,
+  location: { state: { teacher: { id: string }}}
 }
 
 interface Style {
@@ -87,18 +87,19 @@ class SequentialActivitiesPage extends React.Component<Props, State> {
             />
           )}
         </FirebaseContext.Consumer>
-        {this.state.help ? (
+{/*         {this.state.help ? (
           <ClickAwayListener onClickAway={this.handleClickAway}>
             {" "}
             <ClassroomClimateHelp />
           </ClickAwayListener>
         ) : (
           <div />
-        )}
+        )} */}
         <main style={{ flex: 1 }}>
           <FirebaseContext.Consumer>
             {(firebase: object) => (
               <CenterMenuSequentialActivities
+                teacherId={this.props.location.state.teacher.id}
                 firebase={firebase}
                 onStatusChange={this.handleCompleteButton}
               />
